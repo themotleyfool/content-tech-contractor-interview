@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+
+{% block header_button %}
+    <a href="{% url 'article_edit' pk=article.pk %}" class="top-menu">
+	<span class="btn btn-dark">Edit Entry</span>
+    </a>
+{% endblock %}
+
+{% block content %}
+    <article class="article">
+        {% if article.published_date %}
+            <time class="date">
+                {{ article.published_date }}
+            </time>
+        {% endif %}
+        <h2>{{ article.title }}</h2>
+        <p>{{ article.text|linebreaksbr }}</p>
+    </article>
+{% endblock %}
