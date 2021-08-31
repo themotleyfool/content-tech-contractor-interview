@@ -1,44 +1,44 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
-from .forms import PostForm
-from .models import Post
+from .forms import ArticleForm
+from .models import Article
 
 
-def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, 'blog/post_list.html', {'posts': posts})
+def article_list(request):
+    articles = Article.objects.filter(published_date__lte=timezone.now())
+    return render(request, 'blog/article_list.html', {'articles': articles})
 
 
-def post_detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post_detail.html', {'post': post})
+def article_detail(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    return render(request, 'blog/article_detail.html', {'article': article})
 
 
-def post_new(request):
+def article_new(request):
     if request.method == "POST":
-        form = PostForm(request.POST)
+        form = ArticleForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.published_date = timezone.now()
-            post.save()
-            return redirect('post_detail', pk=post.pk)
+            article = form.save(commit=False)
+            article.author = request.user
+            article.published_date = timezone.now()
+            article.save()
+            return redirect('article_detail', pk=article.pk)
     else:
-        form = PostForm()
-    return render(request, 'blog/post_edit.html', {'form': form})
+        form = ArticleForm()
+    return render(request, 'blog/article_edit.html', {'form': form})
 
 
-def post_edit(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+def article_edit(request, pk):
+    article = get_object_or_404(Article, pk=pk)
     if request.method == "POST":
-        form = PostForm(request.POST, instance=post)
+        form = ArticleForm(request.POST, instance=article)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.published_date = timezone.now()
-            post.save()
-            return redirect('post_detail', pk=post.pk)
+            article = form.save(commit=False)
+            article.author = request.user
+            article.published_date = timezone.now()
+            article.save()
+            return redirect('article_detail', pk=article.pk)
     else:
-        form = PostForm(instance=post)
-    return render(request, 'blog/post_edit.html', {'form': form})
+        form = ArticleForm(instance=article)
+    return render(request, 'blog/article_edit.html', {'form': form})
