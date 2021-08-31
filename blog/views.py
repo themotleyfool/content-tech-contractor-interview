@@ -21,7 +21,6 @@ def article_new(request):
         if form.is_valid():
             article = form.save(commit=False)
             article.author = request.user
-            article.published_date = timezone.now()
             article.save()
             return redirect('article_detail', pk=article.pk)
     else:
@@ -36,7 +35,6 @@ def article_edit(request, pk):
         if form.is_valid():
             article = form.save(commit=False)
             article.author = request.user
-            article.published_date = timezone.now()
             article.save()
             return redirect('article_detail', pk=article.pk)
     else:
