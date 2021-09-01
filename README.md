@@ -4,6 +4,7 @@ Project for Content Tech Contractor Interviews.
 ## Configure the Application
 Run the following commands once to configure the application.
 ```bash
+pip install -r requirements.txt
 python manage.py migrate
 python manage.py loaddata datadump.json
 ```
