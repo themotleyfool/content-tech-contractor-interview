@@ -11,11 +11,8 @@
 <body>
 <header class="page-header">
     <div class="container">
-        {% if user.is_authenticated %}
-            <a href="{% url 'article_new' %}" class="top-menu">
-                {% include './icons/file-earmark-plus.svg' %}
-            </a>
-        {% endif %}
+	{% block header_button %}
+        {% endblock %}
         <h1><a href="/">Foolish Farming Blog</a></h1>
     </div>
 </header>
