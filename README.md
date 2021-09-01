@@ -23,4 +23,5 @@ Admin: http://127.0.0.1:8000/admin
 **Username:** admin  
 **Password:** admin
 
-
+## Acknowledgements
+This project borrows liberally from the [Django Girls Tutorial](https://tutorial.djangogirls.org/en/)
