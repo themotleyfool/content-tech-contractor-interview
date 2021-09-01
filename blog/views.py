@@ -27,10 +27,10 @@ def article_new(request):
             return redirect('article_detail', pk=article.pk)
     else:
         form = ArticleForm()
-    return render(request, 'blog/article_edit.html', {'form': form, 'create': True})
+    return render(request, 'blog/article_edit.html', {'form': form})
 
 
-@login_required
+@ login_required
 def article_edit(request, pk):
     article = get_object_or_404(Article, pk=pk)
     if request.method == "POST":
