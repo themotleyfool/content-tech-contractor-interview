@@ -30,7 +30,7 @@ def article_new(request):
     return render(request, 'blog/article_edit.html', {'form': form})
 
 
-@ login_required
+@login_required
 def article_edit(request, pk):
     article = get_object_or_404(Article, pk=pk)
     if request.method == "POST":
